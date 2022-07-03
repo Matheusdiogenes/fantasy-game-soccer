@@ -2,7 +2,7 @@ import { randomUUID as uuid } from 'crypto'
 import { Market, Player } from "../../../src/domain/entities"
 
 describe('Criar mercado e adicionar jogadores', () => {
-  const market = new Market()
+  const market = new Market('Europa')
   const [id1, id2, id3] = [uuid(), uuid(), uuid()]
   const player1 = new Player('Ronaldo', 'Atacante', 20, id1)
   const player2 = new Player('Zico', 'Atacante', 50, id2)

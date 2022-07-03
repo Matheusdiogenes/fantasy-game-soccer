@@ -1,9 +1,15 @@
+import { randomUUID as uuid } from "crypto";
 import { Player } from "./Player"
 
 export class Market {
   private players: Player[] = []
-
-  constructor() { }
+  readonly id: string
+  constructor(
+    readonly name: string,
+    id?: string
+  ) { 
+    this.id = id || uuid()
+  }
 
   addPlayer(player: Player) {
     this.players.push(player)
@@ -24,5 +30,12 @@ export class Market {
 
   public get getPlayers(): Player[] {
     return this.players
+  }
+
+  toJSON(){
+    return {
+      id: this.id,
+      name: this.name
+    }
   }
 }

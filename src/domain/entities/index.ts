@@ -1,3 +1,3 @@
 export * from './Player'
-export * from './FreePlayers'
+export * from './Market'
 export * from './Team'

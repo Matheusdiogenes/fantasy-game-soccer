@@ -1,11 +1,16 @@
+import { randomUUID as uuid } from "crypto";
 import { Player } from "./Player"
 
 export class Team {
+  readonly id: string
+  private players: Player[] = []
   constructor(
-    public name: string,
+    readonly name: string,
     public patrimony: number,
-    private players: Player[] = []
-  ) { }
+    id?: string
+  ) {
+    this.id = id || uuid()
+  }
 
   addPlayerToTeam(player: Player) {
     this.patrimony -= player.getSalary
@@ -13,7 +18,6 @@ export class Team {
   }
 
   sellPlayer(id: string) {
-    if (this.amountPlayer() === 0) throw new Error('Nenhum jogador para vender/dispensar.')
     const player = this.getPlayer(id)
     this.patrimony += player.getSalary
     this.players = this.players.filter(p => p.id !== id)
@@ -25,7 +29,15 @@ export class Team {
     return player
   }
 
-  amountPlayer() {
-    return this.players.length
+  public get getPlayers(): Player[] {
+    return this.players
+  }
+
+  toJSON(){
+    return {
+      id: this.id,
+      name: this.name,
+      patrimony: this.patrimony,
+    }
   }
 }

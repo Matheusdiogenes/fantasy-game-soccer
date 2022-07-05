@@ -3,12 +3,14 @@ import { Player } from "./Player"
 
 export class Team {
   readonly id: string
-  private players: Player[] = []
+  private players: Player[]
   constructor(
     readonly name: string,
     public patrimony: number,
-    id?: string
+    id?: string,
+    players?: Player[]
   ) {
+    this.players = players || []
     this.id = id || uuid()
   }
 

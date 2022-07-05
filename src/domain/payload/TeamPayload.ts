@@ -1,6 +1,6 @@
 export type CreateTeamInput = {
   name: string,
-  patrimony: string
+  patrimony: number
 }
 
 export type CreateTeamOutput = CreateTeamInput & {

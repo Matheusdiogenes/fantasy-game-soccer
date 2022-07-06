@@ -17,6 +17,6 @@ describe('Criação de jogadores', () => {
       playerId,
     )
 
-    expect(player1.toJSON()).toStrictEqual({ id: playerId, ...player1Data, })
+    expect(player1.toJSON()).toStrictEqual({ id: playerId, idTeam: '', ...player1Data, })
   })
 })

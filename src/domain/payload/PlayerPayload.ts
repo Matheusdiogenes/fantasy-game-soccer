@@ -5,7 +5,8 @@ export type CreatePlayerInput = {
 }
 
 export type CreatePlayerOutput = CreatePlayerInput & {
-  id: string
+  id: string,
+  idTeam: string,
 }
 
 export type UpdatePlayer = Partial<CreatePlayerInput>

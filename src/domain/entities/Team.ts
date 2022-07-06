@@ -15,6 +15,7 @@ export class Team {
   }
 
   addPlayerToTeam(player: Player) {
+    player.signContract(this.id)
     this.patrimony -= player.getSalary
     this.players.push(player)
   }
@@ -23,6 +24,8 @@ export class Team {
     const player = this.getPlayer(id)
     this.patrimony += player.getSalary
     this.players = this.players.filter(p => p.id !== id)
+    player.signContract('')
+    return player
   }
 
   getPlayer(id: string): Player {

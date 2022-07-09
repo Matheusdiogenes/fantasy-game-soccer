@@ -5,7 +5,7 @@ import { IMarketRepo } from "../../../domain/repositories/IMarketRepo";
 export class CreateMarketUseCase {
   constructor(private marketRepo: IMarketRepo) { }
 
-  async extecute(marketData: CreateMarketInput, id?: string): Promise<CreateMarketOutput> {
+  async execute(marketData: CreateMarketInput, id?: string): Promise<CreateMarketOutput> {
     const createMarket = new Market(marketData.name, id)
     const market = await this.marketRepo.create(createMarket)
     return market

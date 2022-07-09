@@ -1,4 +1,4 @@
-import { CreateMarketUseCase, AddPlayerMarketUseCase } from "../../application/useCases/market";
+import { CreateMarketUseCase, AddPlayerMarketUseCase, FindAllPlayerUseCase } from "../../application/useCases/market";
 import { IMarketRepo } from "../../domain/repositories";
 import { IHttpServer } from "./IHttpServer";
 
@@ -11,7 +11,7 @@ export class RouterMarket {
   async init() {
     this.httpServer.on('post', '/market', async (params: any, body: any) => {
       const createMarket = new CreateMarketUseCase(this.repository)
-      const market = await createMarket.extecute(body)
+      const market = await createMarket.execute(body)
       return market
     })
 
@@ -20,5 +20,12 @@ export class RouterMarket {
       const result = await addPlayer.execute(body.idMarket, body.playerData)
       return result
     })
+
+    this.httpServer.on('get', '/market/players', async (params: any, body: any) => {
+      const findPlayers = new FindAllPlayerUseCase(this.repository)
+      const result = await findPlayers.execute(body.idMarket)
+      return result
+    })
+
   }
 }

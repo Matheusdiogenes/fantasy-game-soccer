@@ -1,11 +1,11 @@
-import { CreateMarketInput, CreateMarketOutput, CreatePlayerOutput, UpdateMarket } from "../payload";
+import { CreateMarketInput, CreateMarketOutput, CreatePlayerInput, CreatePlayerOutput, UpdateMarket } from "../payload";
 
 export interface IMarketRepo {
   create(input: CreateMarketInput): Promise<CreateMarketOutput>
-  findMarketById(id: string): Promise<CreateMarketOutput>
-  findPlayerById(id: string): Promise<CreatePlayerOutput>
-  findAllPlayer(id: string): Promise<CreatePlayerOutput[]>
-  addPlayerToMarket(input: CreatePlayerOutput): Promise<boolean>
+  findMarketById(idMarket: string): Promise<CreateMarketOutput>
+  findPlayerById(idMarket: string, idPlayer: string): Promise<CreatePlayerOutput>
+  findAllPlayer(idMarket: string): Promise<CreatePlayerOutput[]>
+  addPlayerToMarket(idMarket: string, input: CreatePlayerOutput): Promise<boolean>
   update(input: UpdateMarket): Promise<void>
   deletePlayer(id: string): Promise<void>
 }

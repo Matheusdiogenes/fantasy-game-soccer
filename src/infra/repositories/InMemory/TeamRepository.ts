@@ -16,10 +16,10 @@ export class TeamRepositoryInMemory implements ITeamRepo {
     if(!team) throw new Error('Time não encontrado.')
     return team
   }
-  async findPlayerById(id: string): Promise<CreatePlayerOutput> {
-    const player = this.players.find(p => p.id === id)
+  async findPlayers(id: string): Promise<CreatePlayerOutput[]> {
+    const player = this.players.filter(p => p.idTeam === id)
     if(!player) throw new Error('Time não encontrado.')
-    return player.toJSON()
+    return player.map( p => p.toJSON())
   }
   async findAll(): Promise<CreateTeamOutput[]> {
     return this.teams

@@ -35,7 +35,7 @@ describe('API Test', () => {
         data: {
           idMarket
         }
-      })      
+      })
       expect(response.data).toHaveLength(1)
     })
 
@@ -59,7 +59,7 @@ describe('API Test', () => {
         data: {
           idMarket
         }
-      })      
+      })
       expect(response.data).toHaveLength(2)
     })
 
@@ -83,8 +83,33 @@ describe('API Test', () => {
         data: {
           idMarket
         }
-      })      
+      })
       expect(response.data).toHaveLength(3)
+    })
+
+    describe('Criando times', () => {
+      let idTeam: string
+      test('Criando o Real Medrid', async () => {
+        const body = {
+          name: 'Real Madrid',
+          patrimony: 100
+        }
+
+        const request = await axios({
+          url: "http://localhost:3333/team",
+          method: "post",
+          data: body
+        });
+
+        idTeam = request.data.id
+
+        const response = await axios({
+          url: `http://localhost:3333/team/players/${idTeam}`,
+          method: 'get',
+        })
+        
+        expect(response.data).toHaveLength(0)
+      })
     })
   })
 })

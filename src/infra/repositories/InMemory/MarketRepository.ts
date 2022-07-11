@@ -14,7 +14,7 @@ export class MarketRepoInMemory implements IMarketRepo {
   findMarketById(id: string): Promise<CreateMarketOutput> {
     throw new Error("Method not implemented.");
   }
-  findPlayerById(id: string): Promise<CreatePlayerOutput> {
+  findPlayerById(idMarket: string, idPlayer: string): Promise<CreatePlayerOutput> {
     throw new Error("Method not implemented.");
   }
   async findAllPlayer(idMarket: string): Promise<CreatePlayerOutput[]> {
@@ -32,7 +32,10 @@ export class MarketRepoInMemory implements IMarketRepo {
   update(input: Partial<CreateMarketInput>): Promise<void> {
     throw new Error("Method not implemented.");
   }
-  deletePlayer(id: string): Promise<void> {
+  async deletePlayerMarket(idMarket: string, idPlayer: string): Promise<boolean> {
+    const market = this.market.find(m => m.id === idMarket)
+    if (!market) throw new Error("Mercado não existe.");
+    market.sellPlayer(idPlayer)
     throw new Error("Method not implemented.");
   }
 

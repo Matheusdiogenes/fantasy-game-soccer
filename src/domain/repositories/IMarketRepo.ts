@@ -7,5 +7,5 @@ export interface IMarketRepo {
   findAllPlayer(idMarket: string): Promise<CreatePlayerOutput[]>
   addPlayerToMarket(idMarket: string, input: CreatePlayerOutput): Promise<boolean>
   update(input: UpdateMarket): Promise<void>
-  deletePlayer(id: string): Promise<void>
+  deletePlayerMarket(idMarket: string, idPlayer: string): Promise<boolean>
 }

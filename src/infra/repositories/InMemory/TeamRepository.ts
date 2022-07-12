@@ -1,9 +1,9 @@
-import { Player, Team } from "../../../domain/entities";
+import { Team } from "../../../domain/entities";
 import { CreateTeamInput, CreateTeamOutput, CreatePlayerOutput } from "../../../domain/payload";
 import { ITeamRepo } from "../../../domain/repositories";
 
 export class TeamRepositoryInMemory implements ITeamRepo {
-  players: Player[] = []
+  players: CreatePlayerOutput[] = []
   teams: Team[] = []
 
   async create(input: CreateTeamInput): Promise<CreateTeamOutput> {
@@ -17,15 +17,16 @@ export class TeamRepositoryInMemory implements ITeamRepo {
     return team
   }
   async findPlayers(id: string): Promise<CreatePlayerOutput[]> {
-    const player = this.players.filter(p => p.idTeam === id)
-    if(!player) throw new Error('Time não encontrado.')
-    return player.map( p => p.toJSON())
+    // const player = this.players.filter(p => p.idTeam === id)
+    // if(!player) throw new Error('Time não encontrado.')
+    return this.players
   }
   async findAll(): Promise<CreateTeamOutput[]> {
     return this.teams
   }
-  addPlayerToTeam(input: CreatePlayerOutput): Promise<void> {
-    throw new Error("Method not implemented.");
+  async addPlayerToTeam(input: CreatePlayerOutput): Promise<boolean> {    
+    this.players.push(input)
+    return true
   }
   removePlayerTeam(id: string): Promise<void> {
     throw new Error("Method not implemented.");

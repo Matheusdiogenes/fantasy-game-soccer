@@ -9,7 +9,7 @@ const teamRepo = new TeamRepositoryInMemory()
 const httpServer = new ExpressAdapter()
 
 const routerMarket = new RouterMarket(httpServer, marketRepo)
-const routerTeam = new RouterTeam(httpServer, teamRepo)
+const routerTeam = new RouterTeam(httpServer, teamRepo, marketRepo)
 
 routerMarket.init()
 routerTeam.init()
